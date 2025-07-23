@@ -17,13 +17,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
+    console.log(data)
     try {
       const res = await axios.post('https://dummyjson.com/auth/login', {
         username: data.username,
         password: data.password
       });
+      console.log(res.data)
 
-      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('token', res.data.accessToken);
 
       Swal.fire({
         icon: 'success',
@@ -33,7 +35,7 @@ const Login = () => {
         showConfirmButton: false
       });
 
-      navigate('/dashboard'); // Or any protected route
+      navigate('/'); // Or any protected route
     } catch (err) {
       Swal.fire({
         icon: 'error',
@@ -69,7 +71,7 @@ const Login = () => {
               required: 'Username is required'
             })}
             placeholder="Enter your username"
-            defaultValue="kminchelle"
+            defaultValue="emilys"
           />
           {errors.username && (
             <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>
@@ -90,7 +92,7 @@ const Login = () => {
               }
             })}
             placeholder="Enter your password"
-            defaultValue="0lelplR"
+            defaultValue="emilyspass"
           />
           {errors.password && (
             <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
@@ -134,3 +136,6 @@ const Login = () => {
 };
 
 export default Login;
+
+
+
