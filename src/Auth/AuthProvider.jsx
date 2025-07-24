@@ -1,6 +1,7 @@
 // context/AuthContext.jsx
 import React, { createContext, useEffect, useState, useCallback } from "react";
 import { decodeToken, getExpiryTime, isTokenExpired } from "../Utils/jwtUtils";
+import LoadingSpinner from "../Components/Loading";
 
 export const AuthContext = createContext();
 
@@ -106,7 +107,7 @@ export const AuthProvider = ({ children }) => {
 
   // Loading fallback
   if (loading) {
-    return <div className="text-center mt-10">Loading authentication...</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   return (
