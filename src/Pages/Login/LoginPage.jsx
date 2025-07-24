@@ -25,13 +25,13 @@ const Login = () => {
             navigate('/');
 
 
-            // Swal.fire({
-            //     icon: 'success',
-            //     title: 'Login Successful!',
-            //     text: `Welcome ${user.firstName}!`,
-            //     timer: 2000,
-            //     showConfirmButton: false
-            // });
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful!',
+                text: `Welcome!`,
+                timer: 2000,
+                showConfirmButton: false
+            });
 
 
         } catch (err) {
