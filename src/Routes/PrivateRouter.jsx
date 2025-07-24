@@ -1,16 +1,19 @@
-// PrivateRoute.jsx
-import React, { useContext } from 'react';
-import { Navigate } from 'react-router';
-import { AuthContext } from '../Auth/AuthProvider';
+// components/ProtectedRoute.jsx
+import React, { useContext } from "react";
+import { Navigate, useLocation } from "react-router";
+import { AuthContext } from "../Auth/AuthProvider";
 
-const PrivateRoute = ({ children }) => {
-  const { accessToken } = useContext(AuthContext);
 
-  if (!accessToken) {
-    return <Navigate to="/login" replace />;
+export const PrivateRoute = ({ children }) => {
+
+  const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
+  
+  if (loading) return <LoadingSpinner></LoadingSpinner>;
+
+  if(!user){
+    return <Navigate to="/login" state={location.pathname} replace />;
   }
 
-  return children;
+  return children ;
 };
-
-export default PrivateRoute;
